@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Moment 1.1 - @ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap">
+    <script src="https://kit.fontawesome.com/b074591ff2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+
+<body>
+    <header>
+        <div class="logo-date-container">
+            <a asp-page="/Index">LOGO</a>
+            @{
+                // Lagrar datum av specifikt format i variabel
+                var date = DateTime.Now.ToString("yyyy-MM-dd");
+            }
+            Dagens datum är: @date
+        </div>
+        <nav class="navbar">
+            <button class="menu-btn" id="menu-btn">
+                <span>Meny</span>
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="nav-links">
+                @{
+                    // Konverterar och lagrar sidans titel som en sträng i en variabel
+                    string pageName = ViewData["Title"] as string;
+                }
+                <li>
+                    <a asp-page="/Index" class="@(pageName == "Start" ? "active-link" : "")">Start</a>
+                </li>
+                <li>
+                    <a asp-page="/Razor" class="@(pageName == "Razor" ? "active-link" : "")">Razor</a>
+                </li>
+                <li>
+                    <a asp-page="/About" class="@(pageName == "Om mig" ? "active-link" : "")">Om mig</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main class="main-content">
+        @RenderBody()
+    </main>
+    <footer class="footer">
+        <p>Av Petra Ingemarsson - Kontakta mig via e-post: <a
+                href="mailto:pein2200@student.miun.se">pein2200@student.miun.se</a></p>
+    </footer>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

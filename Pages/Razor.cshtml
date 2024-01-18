@@ -1,0 +1,49 @@
+﻿@page
+@model MyApp.Namespace.RazorModel
+@{
+    ViewData["Title"] = "Razor";
+
+    // Aktuellt datum och klockslag hämtas, formatteras och lagras i variabel
+    var date = DateTime.Now;
+    var formattedDateTime = date.ToString("yyyy-MM-dd HH:mm:ss");
+
+    // Om det är måndag lagras true i variabeln, annars false
+    bool isMonday = date.DayOfWeek == DayOfWeek.Monday;
+
+    // Skapar lista med kurser
+    var courses = new List<string>
+        {
+        "DT157G, Webbutveckling I",
+        "DT084G, Introduktion till programmering i JavaScript",
+        "DT200G, Grafisk teknik för webb",
+        "DT068G, Webbanvändbarhet",
+        "DT093G, Webbutveckling II",
+        "DT003G, Databaser",
+        "DT173G, Webbutveckling III",
+        "DT197G, Webbdesign för CMS",
+        "IK060G, Projektledning",
+        "DT193G, Fullstack-utveckling med ramverk",
+        "DT162G, JavaScript-baserad webbutveckling",
+        "DT071G, Programmering i C#.NET"
+        };
+}
+
+<h1>Razor</h1>
+<p>@formattedDateTime</p>
+
+@if (isMonday)
+{
+    <p>Idag är det måndag!</p>
+}
+else
+{
+    <p>Idag är det inte måndag!</p>
+}
+
+<p><strong>Kurser jag läst:</strong></p>
+<ul>
+    @foreach (var course in courses)
+    {
+        <li>@course</li>
+    }
+</ul>
